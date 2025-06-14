@@ -1,58 +1,96 @@
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern font stack */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin: 0;
-    background-color: #f4f7f6; /* Lighter, softer background */
-    padding-top: 10px; /* Add some space at the top */
+    align-items: center; /* This centers the toolbar and canvas block */
+    margin: 0; /* Reset default margin */
+    background-color: #ECEFF1;
+    color: #37474F;
+    padding: 20px; /* Add uniform padding around the body content */
+    min-height: 100vh; /* Ensure body takes at least full viewport height */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
 
 .toolbar {
-    margin-bottom: 15px; /* Increased space below toolbar */
-    padding: 12px 15px; /* Slightly more padding */
-    background-color: #ffffff; /* White toolbar background */
-    border-radius: 8px; /* More rounded corners */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+    margin-bottom: 20px;
+    padding: 10px 12px;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
     display: flex;
-    gap: 8px; /* Adjusted gap between buttons */
-    align-items: center; /* Align items vertically */
+    flex-wrap: wrap; /* Allow toolbar items to wrap on smaller screens */
+    gap: 10px; /* Slightly increased gap for better separation if they wrap */
+    align-items: center;
+    justify-content: center; /* Center items in toolbar if they wrap and there's space */
 }
 
 .toolbar button {
-    padding: 8px 12px; /* Adjusted padding */
-    border: 1px solid #d1d5db; /* Lighter border */
-    border-radius: 6px; /* More rounded buttons */
-    background-color: #f9fafb; /* Very light gray for buttons */
-    color: #374151; /* Darker text for contrast */
+    padding: 8px 15px; /* Slightly more horizontal padding for better spacing with icons */
+    border: 1px solid #CFD8DC;
+    border-radius: 8px; /* Increased border-radius for a softer, more modern look */
+    background-color: #FFFFFF;
+    color: #37474F;
     cursor: pointer;
-    font-size: 14px; /* Slightly smaller font size for a cleaner look */
-    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out; /* Smooth transitions */
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.25px;
+    transition: background-color 0.25s ease-in-out,
+                border-color 0.25s ease-in-out,
+                color 0.25s ease-in-out, /* Add color transition for text color changes (e.g., on active tool) */
+                transform 0.15s ease-in-out,
+                box-shadow 0.15s ease-in-out;
+    display: inline-flex; /* Helps with vertical alignment of icon and text if needed */
+    align-items: center; /* Vertically align content in button */
+    justify-content: center; /* Horizontally center content */
 }
 
 .toolbar button:hover {
-    background-color: #f3f4f6; /* Slightly darker on hover */
-    border-color: #adb5bd;
+    background-color: #F0F4F8; /* Lighter, cooler hover state */
+    border-color: #B0BEC5;
+    transform: translateY(-1px); /* Subtle lift effect */
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05); /* Subtle shadow on hover */
+}
+
+.toolbar button:active { /* Style for when button is being pressed */
+    transform: translateY(0px); /* Remove lift, or press down slightly */
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.05); /* Inner shadow for pressed effect */
 }
 
 .toolbar button.active-tool {
-    background-color: #e0e7ff; /* Softer blue for active tool */
-    border-color: #a5b4fc; /* Corresponding border color */
-    color: #3730a3; /* Darker text for active tool */
-    font-weight: 600; /* Slightly bolder */
+    background-color: #007AFF;
+    border-color: #007AFF;
+    color: #FFFFFF;
+    font-weight: 600;
+    box-shadow: 0 1px 3px rgba(50, 50, 150, 0.2); /* Shadow for active tool button */
+}
+
+.toolbar button.active-tool:hover {
+    background-color: #0069D9; /* Slightly darker blue on hover for active tool */
+    border-color: #0062CC;
+    transform: translateY(-1px); /* Keep lift effect */
+    box-shadow: 0 2px 4px rgba(50, 50, 150, 0.3); /* Enhanced shadow on hover for active tool */
 }
 
 /* Ensure input elements in toolbar are vertically aligned if they are visible */
 .toolbar input[type="color"],
 .toolbar input[type="range"] {
-    margin-left: 5px;
-    vertical-align: middle; /* Helps align with buttons */
+    margin-left: 8px; /* Consistent spacing */
+    vertical-align: middle;
+}
+
+/* Ensure child elements like input type=range are well-behaved within the flex layout */
+.toolbar input[type="range"] {
+    /* The browser's default styling for range inputs can be inconsistent.
+       For now, we assume it aligns well enough with 'vertical-align: middle'.
+       If further refinement is needed, specific styling for range inputs would be required. */
+    flex-shrink: 0; /* Prevent range input from shrinking too much if toolbar is crowded */
 }
 
 #drawingCanvas {
-    border: 1px solid #d1d5db; /* Match button border color */
+    border: 1px solid #CFD8DC; /* Consistent soft border */
     background-color: white;
     cursor: crosshair;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05); /* Subtle shadow for canvas */
-    border-radius: 4px; /* Optional: slightly rounded canvas corners */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    border-radius: 8px; /* Slightly more rounded canvas corners to match buttons/toolbar */
+    max-width: 100%; /* Ensure canvas does not overflow its container due to fixed JS width setting */
 }
