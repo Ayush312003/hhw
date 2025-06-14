@@ -6,15 +6,25 @@
 </head>
 <body>
     <div class="toolbar">
-        <button id="colorPicker">✏️ Color</button>
+        <!-- ... toolbar buttons ... -->
+        <button id="penTool" title="Pen">✏️ Pen</button>
         <input type="color" id="colorValue" value="#000000" style="display: none;">
-        <button id="sizePicker">✏️ Size</button>
+        <button id="sizePicker" title="Size">📏 Size</button>
         <input type="range" id="sizeValue" min="1" max="20" value="5" style="display: none;">
-        <button id="eraser">🧼 Eraser</button>
-        <button id="clear">Clear</button>
-        <button id="undo">Undo</button> <!-- New Undo Button -->
+        <button id="eraser" title="Eraser">🧼 Eraser</button>
+        <button id="clear" title="Clear">🗑️ Clear</button>
+        <button id="undo" title="Undo">↩️ Undo</button>
+
+        <span class="tool-separator">|</span>
+        <button id="rectTool" title="Rectangle">▭</button>
+        <button id="circleTool" title="Circle">○</button>
+        <button id="lineTool" title="Line">—</button>
+        <button id="textTool" title="Text">T</button>
     </div>
-    <canvas id="drawingCanvas"></canvas>
+    <div id="canvasContainer" style="position: relative;"> <!-- Added a container for positioning -->
+        <canvas id="drawingCanvas"></canvas>
+        <canvas id="previewCanvas"></canvas> <!-- New Preview Canvas -->
+    </div>
     <script src="script.js"></script>
 </body>
 </html>

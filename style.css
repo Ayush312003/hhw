@@ -18,10 +18,16 @@ body {
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.07);
     display: flex;
-    flex-wrap: wrap; /* Allow toolbar items to wrap on smaller screens */
-    gap: 10px; /* Slightly increased gap for better separation if they wrap */
+    flex-wrap: wrap; /* Ensure it's there */
+    justify-content: center; /* Keep it centered if it wraps */
+    gap: 8px; /* Adjusted gap slightly, from 10px, if too much with new buttons */
     align-items: center;
-    justify-content: center; /* Center items in toolbar if they wrap and there's space */
+}
+
+.tool-separator {
+    margin: 0 5px;
+    color: #CFD8DC; /* Light separator color */
+    align-self: center; /* Align it with button centers */
 }
 
 .toolbar button {
@@ -92,5 +98,27 @@ body {
     cursor: crosshair;
     box-shadow: 0 1px 3px rgba(0,0,0,0.05);
     border-radius: 8px; /* Slightly more rounded canvas corners to match buttons/toolbar */
-    max-width: 100%; /* Ensure canvas does not overflow its container due to fixed JS width setting */
+    max-width: 100%;
+    display: block; /* Remove extra space below canvas if it's inline */
+}
+
+#canvasContainer {
+    position: relative; /* Establishes a positioning context for the canvases */
+    /* Ensure the container itself doesn't add extra space if not needed,
+       or set its dimensions if you want it to constrain the canvases.
+       For now, it will just wrap the main canvas's size. */
+    /* It might be good to set the container's dimensions explicitly based on the main canvas,
+       or ensure the main canvas dictates the container size.
+       Let's assume drawingCanvas's JS-set size will define the container's effective area. */
+    margin-bottom: 10px; /* Add some space below the canvas area */
+}
+
+#previewCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* Dimensions will be set by JavaScript to match drawingCanvas */
+    /* background-color: rgba(0,0,255,0.1); /* Optional: for debugging visibility */
+    cursor: crosshair; /* Ensure cursor is consistent */
+    pointer-events: none; /* IMPORTANT: So mouse events go to the drawingCanvas below */
 }
