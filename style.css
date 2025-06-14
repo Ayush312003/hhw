@@ -1,40 +1,58 @@
 body {
-    font-family: sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern font stack */
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 0;
-    background-color: #f0f0f0;
+    background-color: #f4f7f6; /* Lighter, softer background */
+    padding-top: 10px; /* Add some space at the top */
 }
 
 .toolbar {
-    margin: 10px;
-    padding: 10px;
-    background-color: #ddd;
-    border-radius: 5px;
+    margin-bottom: 15px; /* Increased space below toolbar */
+    padding: 12px 15px; /* Slightly more padding */
+    background-color: #ffffff; /* White toolbar background */
+    border-radius: 8px; /* More rounded corners */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Subtle shadow for depth */
     display: flex;
-    gap: 10px; /* Adds space between buttons */
+    gap: 8px; /* Adjusted gap between buttons */
+    align-items: center; /* Align items vertically */
 }
 
 .toolbar button {
-    padding: 8px 15px;
-    border: 1px solid #bbb;
-    border-radius: 3px;
-    background-color: #fff;
+    padding: 8px 12px; /* Adjusted padding */
+    border: 1px solid #d1d5db; /* Lighter border */
+    border-radius: 6px; /* More rounded buttons */
+    background-color: #f9fafb; /* Very light gray for buttons */
+    color: #374151; /* Darker text for contrast */
     cursor: pointer;
+    font-size: 14px; /* Slightly smaller font size for a cleaner look */
+    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out; /* Smooth transitions */
 }
 
 .toolbar button:hover {
-    background-color: #eee;
+    background-color: #f3f4f6; /* Slightly darker on hover */
+    border-color: #adb5bd;
+}
+
+.toolbar button.active-tool {
+    background-color: #e0e7ff; /* Softer blue for active tool */
+    border-color: #a5b4fc; /* Corresponding border color */
+    color: #3730a3; /* Darker text for active tool */
+    font-weight: 600; /* Slightly bolder */
+}
+
+/* Ensure input elements in toolbar are vertically aligned if they are visible */
+.toolbar input[type="color"],
+.toolbar input[type="range"] {
+    margin-left: 5px;
+    vertical-align: middle; /* Helps align with buttons */
 }
 
 #drawingCanvas {
-    border: 1px solid black;
+    border: 1px solid #d1d5db; /* Match button border color */
     background-color: white;
     cursor: crosshair;
-}
-
-/* Styles for color and size pickers that appear on click */
-#colorValue, #sizeValue {
-    margin-left: 5px; /* Add some space if they become visible */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05); /* Subtle shadow for canvas */
+    border-radius: 4px; /* Optional: slightly rounded canvas corners */
 }
