@@ -116,7 +116,7 @@ window.addEventListener('load', () => {
             return;
         }
 
-        if (text && text.trim() !== '') {
+        if (typeof text === 'string') {
             const fontSize = Math.max(10, parseFloat(brushSize) * 2.5);
             if (isNaN(fontSize) || fontSize <= 0) {
                 console.error("[finalizeText] Invalid font size calculated:", fontSize, "from brushSize:", brushSize);
@@ -199,8 +199,8 @@ window.addEventListener('load', () => {
         textInput.addEventListener('keydown', handleTextInputKeydown);
 
         if (canvasContainer) canvasContainer.appendChild(textInput);
-        textInput.focus();
-    console.log("[createTextEditor] Text input created, styled, appended, and focused with simplified positioning.");
+// textInput.focus(); // Removing this to see if it prevents immediate blur in Playwright
+console.log("[createTextEditor] Text input created, styled, and appended (focus removed).");
     }
 
     function startPosition(e) {

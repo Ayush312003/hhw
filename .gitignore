@@ -1,0 +1,4 @@
+node_modules/
+*.local
+*.log
+test_text_tool.mjs-ผลลัพธ์.txt
